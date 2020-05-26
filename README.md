@@ -35,6 +35,4 @@ python3
 ## 联系方式
 有问题可以提交issues。
 
-微信：zanyryy
-欢迎各位老板支持
-![Image text](https://raw.githubusercontent.com/xiaoheiwo/GGSCAN/master/img/4.png)
+微信：zanyryy：
