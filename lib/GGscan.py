@@ -44,17 +44,20 @@ def tiqu(t_filename):
 def scan(scan_ip):
     try:
         key = scan_ip
-        for Port in dict[key]:
-            Ip=key
-            nm = nmap.PortScanner()
-            ret = nm.scan(str(Ip),str(Port),arguments='-Pn -T4 -sV')
-            service_name = ret['scan'][str(Ip)]['tcp'][int(Port)]['name']
-            version = ret['scan'][str(Ip)]['tcp'][int(Port)]['product'] + \
-                      ret['scan'][str(Ip)]['tcp'][int(Port)]['version'] + \
-                      ret['scan'][str(Ip)]['tcp'][int(Port)]['extrainfo']
-            # print (ret)
-            print ('[*]主机 ' + str(Ip) + ' 的 ' + str(Port) + ' 端口服务为：' + service_name +' 版本：'+version)
-            result.append([Ip,Port,service_name])
+        if len(dict[key]) < 50:
+            for Port in dict[key]:
+                Ip=key
+                nm = nmap.PortScanner()
+                ret = nm.scan(str(Ip),str(Port),arguments='-Pn -T4 -sV')
+                service_name = ret['scan'][str(Ip)]['tcp'][int(Port)]['name']
+                version = ret['scan'][str(Ip)]['tcp'][int(Port)]['product'] + \
+                          ret['scan'][str(Ip)]['tcp'][int(Port)]['version'] + \
+                          ret['scan'][str(Ip)]['tcp'][int(Port)]['extrainfo']
+                # print (ret)
+                print ('[*]主机 ' + str(Ip) + ' 的 ' + str(Port) + ' 端口服务为：' + service_name +' 版本：'+version)
+                result.append([Ip,Port,service_name])
+        else:
+            print ("IP:"+key+"存在防火墙，跳过扫描")
     except Exception as e:
        print( "nmap端口扫描失败")
        pass
