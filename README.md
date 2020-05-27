@@ -8,6 +8,10 @@
 # GGSCAN
 渗透前资产探测工具  
 目前版本v1.1
+
+修改masscan扫描线程，在conf/目录下 info.conf 文件中
+
+不需要的模块 如title 和端口爆破模块 可以在gg.py 中注释掉最后的调用即可
 ## 使用环境
 
 ubuntu
