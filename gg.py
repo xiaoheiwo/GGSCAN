@@ -7,6 +7,7 @@ from lib.GGscan import main
 from lib.GGtitle import Title
 from lib.GGweakpass import Weakpass_Scan
 from lib.GGmasscan import mscan
+from lib.GGmasscan import mscan2
 from lib.GGlog import LogInfo
 if __name__ == '__main__':
 
@@ -39,8 +40,12 @@ if __name__ == '__main__':
     # conf_info['smtp_server'] = conf.get("Email", "smtp_server").strip()
 
     #调用GGscan里面的main函数启动程序，并传递配置
-    mfile=sys.argv[1]
-    mscan(mfile,conf_info)
+    if str(sys.argv[1]) == "-i" :
+        ip=sys.argv[2]
+        mscan2(ip,conf_info)
+    else:
+        mfile=sys.argv[1]
+        mscan(mfile,conf_info)
     result=main(conf_info)
     Title(result)
     Weakpass_Scan().run()
