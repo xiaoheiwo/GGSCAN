@@ -10,7 +10,8 @@ from lib.GGmasscan import mscan
 from lib.GGmasscan import mscan2
 from lib.GGlog import LogInfo
 if __name__ == '__main__':
-
+    print ('----------------------------GGSCAN V1.2')
+    print ('----------------------------BY:MELONER')
     result=[]
     #获取运行时间
     start_time = datetime.datetime.now()
