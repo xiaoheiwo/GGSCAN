@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eb317141-ffac-469d-9c6b-2de8b97b79e0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/info.conf" beforeDir="false" afterPath="$PROJECT_DIR$/conf/info.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gg.py" beforeDir="false" afterPath="$PROJECT_DIR$/gg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/GGmasscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GGmasscan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/GGscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GGscan.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,7 +50,8 @@
       <option name="presentableId" value="Default" />
       <updated>1580380483944</updated>
       <workItem from="1590568006543" duration="6165000" />
-      <workItem from="1590647633817" duration="7078000" />
+      <workItem from="1590647633817" duration="7397000" />
+      <workItem from="1590733647584" duration="117000" />
     </task>
     <servers />
   </component>

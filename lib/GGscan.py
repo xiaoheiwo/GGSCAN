@@ -22,7 +22,9 @@ class Scan(threading.Thread):
             port=aa[1]
             try:
                 #加入线程锁，解决了程序运行完shell不能执行其他命令的bug
+                threadLock.acquire()
                 scan(ip,port)
+                threadLock.release()
             except Exception as e:
                 print (e)
                 pass
@@ -56,9 +58,9 @@ def scan(scan_ip,port):
                   ret['scan'][str(Ip)]['tcp'][int(Port)]['version'] + \
                   ret['scan'][str(Ip)]['tcp'][int(Port)]['extrainfo']
         # print (ret)
-        threadLock.acquire()
+
         print ('[*]主机 ' + str(Ip) + ' 的 ' + str(Port) + ' 端口服务为：' + service_name +' 版本：'+version)
-        threadLock.release()
+
         result.append([Ip,Port,service_name])
     #
     # except Exception as e:
