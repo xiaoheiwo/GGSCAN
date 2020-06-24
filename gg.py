@@ -9,8 +9,9 @@ from lib.GGweakpass import Weakpass_Scan
 from lib.GGmasscan import mscan
 from lib.GGmasscan import mscan2
 from lib.GGlog import LogInfo
+from lib.GGtiqu import tiqu
 if __name__ == '__main__':
-    print ('----------------------------GGSCAN V1.2')
+    print ('----------------------------GGSCAN V1.3')
     print ('----------------------------BY:MELONER')
     result=[]
     #获取运行时间
@@ -35,10 +36,6 @@ if __name__ == '__main__':
     conf_info['type'] = conf.get("OPTIONS", "type").strip()
     conf_info['rate'] = conf.get("Masscan", "rate").strip()
 
-    # conf_info['email_user'] = conf.get("Email", "user").strip()
-    # conf_info['email_pass'] = conf.get("Email", "pass").strip()
-    # conf_info['target_email'] = conf.get("Email", "target_email").strip()
-    # conf_info['smtp_server'] = conf.get("Email", "smtp_server").strip()
 
     #调用GGscan里面的main函数启动程序，并传递配置
     if str(sys.argv[1]) == "-i" :
@@ -47,8 +44,9 @@ if __name__ == '__main__':
     else:
         mfile=sys.argv[1]
         mscan(mfile,conf_info)
-    result=main(conf_info)
-    Title(result)
+    result=tiqu(conf_info["ip_file"])
+    # Title(result)
+    nmap=main(result,conf_info)
     Weakpass_Scan().run()
     spend_time = (datetime.datetime.now() - start_time).seconds
     print ('程序共运行了： ' + str(spend_time) + '秒')

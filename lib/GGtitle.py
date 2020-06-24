@@ -36,13 +36,13 @@ def Title(result):
             response = re.findall(u'<title>(.*?)</title>',r.content.decode('utf-8'),re.S)
             if response == []:
                 final_domains.append(i + "\n" )
-                final_domains.append(i)
+                # final_domains.append(i)
             else:
                 #将页面解码为utf-8，获取中文标题
                 res = response[0]
                 banner = r.headers['server']
-                final_domains.append(i + '\t ' + banner + ' \t' + res+"\n")
-                print (i + '\t ' + banner + ' \t' + res )
+                final_domains.append(i + '\t ' + banner + ' \t' + res.strip()+"\n")
+                print (i + '\t ' + banner + ' \t' + res.strip() )
         except Exception as e:
             # print(e)
             pass
@@ -51,3 +51,5 @@ def Title(result):
         f1.write(i)
     f1.close()
     logger.infostring('finsh Title recognition ...')
+
+

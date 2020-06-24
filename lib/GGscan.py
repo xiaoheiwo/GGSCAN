@@ -30,22 +30,6 @@ class Scan(threading.Thread):
                 pass
 
 
-
-#提取目标文件内容，分解成nmap可以识别的参数
-def tiqu(t_filename):
-
-    f1=open(t_filename,"r")
-    for i in f1.readlines():
-        if i.split( )[0] =="open":
-            port= i.split( )[2]
-            ip= i.split( )[3]
-            #将提取的内容放在字典dict{}中方便程序调用
-
-            dict.setdefault(str(ip),set()).add(port)
-        else:
-            pass
-    f1.close()
-
 #使用nmap扫描目标识别服务
 def scan(scan_ip,port):
     # try:
@@ -77,25 +61,19 @@ def out():
     f2.close()
     f1.close()
 
-def main(conf_info):
+def main(result,conf_info):
     #输出日志文件
     logger = LogInfo('log/process.log')
     logger.infostring('start nmap scan service...')
     #导入masscan的结果
-    t_filename = conf_info["ip_file"]
     t=conf_info["t"]
     #调用函数提取masscan的内容
-    tiqu(t_filename)
     queue = Queue()
 
-    #遍历目标调用多线程开始进行nmap扫描
-    for key in dict:
-        if len(dict[key]) < 50:
-            for i in dict[key]:
-                a=[key,i]
-                queue.put(a)
-        else:
-            print ("IP:"+key+"存在防火墙，跳过扫描")
+
+    for i in result:
+        queue.put(i)
+
     threads=[]
     thread_count=int(t)
     for i in range(thread_count):
