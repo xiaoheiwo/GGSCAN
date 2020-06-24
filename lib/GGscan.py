@@ -1,7 +1,6 @@
 # coding=utf-8
 import nmap
 import threading
-from lib.GGlog import LogInfo
 from queue import Queue
 from multiprocessing import Pool as ThreadPool
 
@@ -43,7 +42,7 @@ def scan(scan_ip,port):
                   ret['scan'][str(Ip)]['tcp'][int(Port)]['extrainfo']
         # print (ret)
 
-        print ('[*]主机 ' + str(Ip) + ' 的 ' + str(Port) + ' 端口服务为：' + service_name +' 版本：'+version)
+        print ('\033[1;32m[*Nmap]\033[0m  主机 ' + str(Ip) + ' 的 ' + str(Port) + ' 端口服务为：' + service_name +' 版本：'+version)
 
         result.append([Ip,Port,service_name])
     #
@@ -63,8 +62,7 @@ def out():
 
 def main(result,conf_info):
     #输出日志文件
-    logger = LogInfo('log/process.log')
-    logger.infostring('start nmap scan service...')
+    print ("\033[1;33m[*INFO]Start nmap scan service...\033[0m")
     #导入masscan的结果
     t=conf_info["t"]
     #调用函数提取masscan的内容
@@ -83,11 +81,10 @@ def main(result,conf_info):
     for t in threads:
         t.join()
 
-
-    logger.infostring('finsh nmap scan ...')
-    logger.infostring('start save result ...')
-    #保存结果
+    print ("\033[1;33m[*INFO]Finsh nmap scan ...\033[0m")
+    print ("\033[1;33m[*INFO]Start save result ...\033[0m")
     out()
-    logger.infostring('finsh save result ...')
+    print ("\033[1;33m[*INFO]Finsh save result ...\033[0m")
+    # logger.infostring('finsh save result ...')
     #返回结果方便title识别调用
     return result

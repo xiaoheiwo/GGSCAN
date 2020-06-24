@@ -4,12 +4,13 @@ import requests
 import re
 import chardet
 requests.packages.urllib3.disable_warnings()
-from lib.GGlog import LogInfo
+
 
 
 def Title(result):
-    logger = LogInfo('log/process.log')
-    logger.infostring('start Title recognition ...')
+    # logger = LogInfo('log/process.log')
+    # logger.infostring('\033[1;31mstart Title recognition ...\033[0m')
+    print ('\033[1;33m[*INFO]Start Title recognition ...\033[0m')
     #清理扫描结果
     f1=open("out/http_result.txt","w")
     f1.close()
@@ -42,7 +43,7 @@ def Title(result):
                 res = response[0]
                 banner = r.headers['server']
                 final_domains.append(i + '\t ' + banner + ' \t' + res.strip()+"\n")
-                print (i + '\t ' + banner + ' \t' + res.strip() )
+                print ("\033[1;32m[*Title]  \033[0m"+i + '\t ' + banner + ' \t' + res.strip() )
         except Exception as e:
             # print(e)
             pass
@@ -50,6 +51,7 @@ def Title(result):
     for i in final_domains:
         f1.write(i)
     f1.close()
-    logger.infostring('finsh Title recognition ...')
+    print ("\033[1;33m[*INFO]finsh Title recognition ...\033[0m")
+
 
 

@@ -1,109 +1,42 @@
-# -*- coding: utf-8 -*-
-import os, subprocess, re
-from lib.GGlog import LogInfo
+import os
+import subprocess
+import re
+def weak(host,port,server):
+    f2 = open("out/weakpass.txt", "a+")
+    user_file = "conf/user.txt"
+    pass_file = "conf/pass.txt"
+    supported = ['asterisk', 'cisco', 'cisco-enable', 'ftp', 'ftps', 'http-proxy', 'imap', 'imaps', 'mssql',
+                 'mysql', 'pcanywhere', 'vnc', 'pop3', 'pop3s', 'postgres', 'rdp', 'redis', 'rexec', 'rlogin',
+                 'rsh', 'smb', 'smtp', 'smtps', 'smtp-enum', 'snmp', 'socks5', 'ssh', 'svn', 'teamspeak', 'telnet',
+                 'telnets', 'vmauthd', 'vnc', 'xmpp']
+    server_only_pass = ['cisco', 'cisco-enable', 'redis']
+    if server not in supported:
+        return
+    # arg="hydra -L user.txt -P pass.txt -s 21 -f 223.68.3.44 ftp"
+    if server not in server_only_pass:
+        # arg = "hydra -L " + user_file + " -P " + pass_file + " -s 21 -f 223.68.3.44 ftp"
+        arg = "hydra -L " + user_file + " -P " + pass_file + " -s " + port + " -f " + host + " " + server
+    else:
+        arg = "hydra -P " + pass_file + " -s " + port + " -f " + host + " " + server
+    print (arg)
+    p = subprocess.Popen(arg,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding="utf-8")
+    # print (p.communicate())
 
-# NAME, VERSION, AUTHOR, LICENSE = "Public Monitor", "V0.1", "咚咚呛", "Public (FREE)"
-
-#调用本地的hydra进行爆破
-class Weakpass_Scan():
-    # 初始化扫描状态
-    def __init__(self):
-        self.target_file = 'out/result.txt'
-        self.user_file = "user.txt"
-        self.pass_file = "pass.txt"
-        self.infolist, self.weakpass_result = [], []
-        self.logger = LogInfo('log/process.log')
-
-    def brute(self, host, port, server):
-
-        supported = ['asterisk', 'cisco', 'cisco-enable', 'ftp', 'ftps', 'http-proxy', 'imap', 'imaps', 'mssql',
-                     'mysql', 'pcanywhere', 'vnc', 'pop3', 'pop3s', 'postgres', 'rdp', 'redis', 'rexec', 'rlogin',
-                     'rsh', 'smb', 'smtp', 'smtps', 'smtp-enum', 'snmp', 'socks5', 'ssh', 'svn', 'teamspeak', 'telnet',
-                     'telnets', 'vmauthd', 'vnc', 'xmpp']
-        server_only_pass = ['cisco', 'cisco-enable', 'redis']
-
-        if server not in supported:
+    for line in iter(p.stdout.readline, b''):
+        if "[ftp]" in line:
+            print (line)
+            f2.write(line+"\n")
             return
+        elif "finished" in line:
+            print ("No weakpass")
+            return
+    f2.close()
+def weakpass(file):
+    print ("\033[1;33mFinsh Weak scan\033[0m")
+    f2=open("out/weakpass.txt","w")
+    t_file=file
+    f1=open(t_file,'r')
+    for i in f1.readlines():
+        value = re.split(':', i.strip())
+        weak(value[0],value[1],value[2])
 
-        # try:
-        print (host+":"+port+":"+server)
-        # arg = ['medusa', '-h', self.host, '-U', self.user_file, '-P', self.pass_file, '-M', self.server, '-t', '5','-n', self.port, '-F', '-e', 'ns'] if BURST_TOOLS == 'medusa' else ['hydra', '-L', self.user_file,'-P', self.pass_file,'-s', self.port, '-f',self.host,self.server]
-        arg = ['hydra', '-L', self.user_file, '-P', self.pass_file, '-s', port, '-f', host,
-               server] if server not in server_only_pass else ['hydra', '-P', self.pass_file, '-s', port, '-f',
-                                                               host, server]
-        p = subprocess.Popen(
-            arg, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=-1)
-
-        for line in iter(p.stdout.readline, b''):
-
-            if '[' + server + ']' in line.decode():
-                if server in server_only_pass:
-                    password = line.split('password: ')[1].strip()
-                    self.logger.infostring(
-                        'find weak pass host: %s, port: %s, server: %s, user: %s, password: %s' % (
-                            host, port, server, "", password))
-                    value = {'host': host, 'port': port, 'server': server, 'user': "", 'password': password}
-                    self.weakpass_result.append(value)
-                # 解析hydra爆破成功结果
-                elif 'login:' in line.decode:
-                    user = line.split('login: ')[1].split('   ')[0].strip()
-                    password = line.split('password: ')[1].strip()
-                    self.logger.infostring(
-                        'find weak pass host: %s, port: %s, server: %s, user: %s, password: %s' % (
-                            host, port, server, user, password))
-                    value = {'host': host, 'port': port, 'server': server, 'user': user, 'password': password}
-                    self.weakpass_result.append(value)
-        # for line in iter(p.stdout.readline, b''):
-        #     str='[' + server + ']'
-        #     str1=str.encode()
-        #     if str1 in line:
-        #         if server in server_only_pass:
-        #             password = line.split('password: ')[1].strip()
-        #             self.logger.infostring(
-        #                 'find weak pass host: %s, port: %s, server: %s, user: %s, password: %s' % (
-        #                     host, port, server, "", password))
-        #             value = {'host': host, 'port': port, 'server': server, 'user': "", 'password': password}
-        #             self.weakpass_result.append(value)
-        #         # 解析hydra爆破成功结果
-        #         elif 'login:' in line:
-        #             user = line.split('login: ')[1].split('   ')[0].strip()
-        #             password = line.split('password: ')[1].strip()
-        #             self.logger.infostring(
-        #                 'find weak pass host: %s, port: %s, server: %s, user: %s, password: %s' % (
-        #                     host, port, server, user, password))
-        #             value = {'host': host, 'port': port, 'server': server, 'user': user, 'password': password}
-        #             self.weakpass_result.append(value)
-
-        # except Exception as e:
-        #     pass
-    def readInfo(self):
-        if os.path.exists(self.target_file):
-            # self.logger.infostring('read scan reasult to weak pass')
-            with open(self.target_file) as f:
-                for line in f:
-                    if line.strip(): self.infolist.append(line.strip())
-
-    def callback(self):
-        if not os.path.exists('out'):
-            os.mkdir('out')
-        f = open('out/Weakpass.txt', 'w')
-        for weakpass in self.weakpass_result:
-            f.write('host: %s, port: %s, server: %s, user: %s, password: %s\n' % (
-                weakpass['host'], weakpass['server'], weakpass['port'], weakpass['user'], weakpass['password']))
-        f.close()
-
-    def run(self):
-        self.logger.infostring('start weak pass thread')
-        self.readInfo()
-        self.logger.infostring('start weak pass scan...')
-        for info in self.infolist:
-            value = re.split('[:]', info)
-            self.brute(value[0], value[1], value[2])
-        self.callback()
-        self.logger.infostring('finsh weak pass scan.')
-        # print( self.weakpass_result)
-
-#
-
-if __name__ == '__main__':
-     Weakpass_Scan().run()

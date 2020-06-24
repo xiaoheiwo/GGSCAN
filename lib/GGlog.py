@@ -2,8 +2,7 @@
 import logging
 import logging.handlers
 
-NAME, VERSION, AUTHOR, LICENSE = "Public Monitor", "V0.1", "咚咚呛", "Public (FREE)"
-
+#弃用
 
 class LogInfo:
     def __init__(self, logfile):

@@ -22,7 +22,7 @@ def tiqu(conf_info):
                 result.append([key,i])
 
         else:
-            print ("IP:"+key+"存在防火墙，跳过扫描")
+            print ("\033[1;33mIP:\033[0m"+key+"\033[1;43m存在防火墙，跳过扫描\033[0m")
     return result
 
 

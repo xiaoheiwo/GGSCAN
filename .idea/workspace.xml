@@ -4,10 +4,14 @@
     <list default="true" id="eb317141-ffac-469d-9c6b-2de8b97b79e0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/pass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/conf/pass.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/conf/user.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gg.py" beforeDir="false" afterPath="$PROJECT_DIR$/gg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/GGmasscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GGmasscan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/GGlog.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GGlog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/GGscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GGscan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/GGtiqu.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GGtiqu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/GGtitle.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GGtitle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/GGweakpass.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GGweakpass.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.new (1)">
     <configuration name="GGtitle" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -78,8 +82,54 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="new (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lib" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lib/new.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="new" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="E:\python3\python3.exe" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/new.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.new (1)" />
+        <item itemvalue="Python.new" />
         <item itemvalue="Python.GGtitle" />
       </list>
     </recent_temporary>
@@ -99,7 +149,7 @@
       <workItem from="1590733647584" duration="117000" />
       <workItem from="1591847063280" duration="3952000" />
       <workItem from="1592297434832" duration="4963000" />
-      <workItem from="1592964714084" duration="2505000" />
+      <workItem from="1592964714084" duration="17116000" />
     </task>
     <servers />
   </component>
@@ -121,5 +171,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/GGSCAN$GGtitle.coverage" NAME="GGtitle Coverage Results" MODIFIED="1591849968454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/hw" />
+    <SUITE FILE_PATH="coverage/GGSCAN$new.coverage" NAME="new Coverage Results" MODIFIED="1592979394423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
   </component>
 </project>

@@ -5,14 +5,14 @@ import sys
 import datetime
 from lib.GGscan import main
 from lib.GGtitle import Title
-from lib.GGweakpass import Weakpass_Scan
+from lib.GGweakpass import weakpass
 from lib.GGmasscan import mscan
 from lib.GGmasscan import mscan2
 from lib.GGlog import LogInfo
 from lib.GGtiqu import tiqu
 if __name__ == '__main__':
-    print ('----------------------------GGSCAN V1.3')
-    print ('----------------------------BY:MELONER')
+    print ('\033[1;32m----------------------------GGSCAN V1.3\033[0m')
+    print ('\033[1;32m----------------------------BY:MELONER\033[0m')
     result=[]
     #获取运行时间
     start_time = datetime.datetime.now()
@@ -45,8 +45,8 @@ if __name__ == '__main__':
         mfile=sys.argv[1]
         mscan(mfile,conf_info)
     result=tiqu(conf_info["ip_file"])
-    # Title(result)
+    Title(result)
     nmap=main(result,conf_info)
-    Weakpass_Scan().run()
+    # weakpass("out/result.txt")
     spend_time = (datetime.datetime.now() - start_time).seconds
     print ('程序共运行了： ' + str(spend_time) + '秒')
