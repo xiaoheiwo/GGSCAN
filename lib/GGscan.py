@@ -44,7 +44,7 @@ def scan(scan_ip,port):
 
         print ('\033[1;32m[*Nmap]\033[0m  主机 ' + str(Ip) + ' 的 ' + str(Port) + ' 端口服务为：' + service_name +' 版本：'+version)
 
-        result.append([Ip,Port,service_name])
+        result.append([Ip,Port,service_name,version])
     #
     # except Exception as e:
     #    print( "nmap端口扫描失败")
@@ -55,8 +55,8 @@ def out():
     f1=open("out/domin3.csv","a+")
     f2=open("out/result.txt","a+")
     for i in result:
-        f1.write(i[0] + ',' + i[1] + ',' + i[2]+"\n")
-        f2.write(i[0]+":"+i[1]+":"+i[2]+"\n")
+        f1.write(i[0] + ',' + i[1] + ',' + i[2]+ ',' + i[3]+"\n")
+        f2.write("主机"+i[0]+"的端口为："+i[1]+"    服务为："+i[2]+"   版本："+i[3]+"\n")
     f2.close()
     f1.close()
 
