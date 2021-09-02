@@ -10,9 +10,15 @@ from lib.GGmasscan import mscan
 from lib.GGmasscan import mscan2
 from lib.GGlog import LogInfo
 from lib.GGtiqu import tiqu
-if __name__ == '__main__':
+import time
+import pathlib
+if name == 'main':
     print ('\033[1;32m----------------------------GGSCAN V1.3\033[0m')
     print ('\033[1;32m----------------------------BY:MELONER\033[0m')
+    # 根据时间输出文档
+    ip_file = "out/" + time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime()) + ".txt"
+    # 文档的初始化
+    pathlib.Path(ip_file).touch()
     result=[]
     #获取运行时间
     start_time = datetime.datetime.now()
@@ -27,9 +33,9 @@ if __name__ == '__main__':
 
     conf_info = {}
     conf = configparser.ConfigParser()
-    conf.read("conf/info.conf")
+    conf.read("conf/info.conf", encoding="utf-8")
     # 从配置文件读取各种配置并加在进列表中
-    conf_info['ip_file'] = conf.get("OPTIONS", "ip_file").strip()
+    conf_info['ip_file'] = ip_file
     conf_info['db_user'] = conf.get("OPTIONS", "db_user").strip()
     conf_info['db_pass'] = conf.get("OPTIONS", "db_pass").strip()
     conf_info['t'] = conf.get("OPTIONS","t").strip()
