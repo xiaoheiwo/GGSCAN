@@ -20,14 +20,13 @@ class Scan(threading.Thread):
             ip=aa[0]
             port=aa[1]
             try:
-                #加入线程锁，解决了程序运行完shell不能执行其他命令的bug
-                threadLock.acquire()
+
+
                 scan(ip,port)
-                threadLock.release()
+
             except Exception as e:
                 print (e)
                 pass
-
 
 #使用nmap扫描目标识别服务
 def scan(scan_ip,port):
@@ -35,20 +34,25 @@ def scan(scan_ip,port):
         Ip=scan_ip
         Port=port
         nm = nmap.PortScanner()
-        ret = nm.scan(str(Ip),str(Port),arguments='-Pn -T4 -sV')
+        ret = nm.scan(str(Ip),str(Port),arguments='-Pn -T4 -sV --noninteractive') #加入--noninteractive 参数 解决 运行完毕后 终端输入不显示问题
         service_name = ret['scan'][str(Ip)]['tcp'][int(Port)]['name']
         version = ret['scan'][str(Ip)]['tcp'][int(Port)]['product'] + \
                   ret['scan'][str(Ip)]['tcp'][int(Port)]['version'] + \
                   ret['scan'][str(Ip)]['tcp'][int(Port)]['extrainfo']
-        # print (ret)
 
-        print ('\033[1;32m[*Nmap]\033[0m  主机 ' + str(Ip) + ' 的 ' + str(Port) + ' 端口服务为：' + service_name +' 版本：'+version)
 
-        result.append([Ip,Port,service_name,version])
+        print('\033[1;32m[*Nmap]\033[0m  主机 ' + str(Ip) + ' 的 ' + str(Port) + ' 端口服务为：' + service_name + ' 版本：' + version)
+        result.append([Ip, Port, service_name, version])
+
+
     #
     # except Exception as e:
     #    print( "nmap端口扫描失败")
     #    pass
+
+def printres(ip,port,service_name,version):
+    print(ip,port,service_name,version)
+    print('\033[1;32m[*Nmap]\033[0m  主机 ' + str(ip) + ' 的 ' + str(port) + ' 端口服务为：' + service_name + ' 版本：' + version)
 
 def out():
     f2=open("out/result.txt","w+")
@@ -67,8 +71,6 @@ def main(result,conf_info):
     t=conf_info["t"]
     #调用函数提取masscan的内容
     queue = Queue()
-
-
     for i in result:
         queue.put(i)
 

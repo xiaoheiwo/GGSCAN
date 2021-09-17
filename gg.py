@@ -11,7 +11,7 @@ from lib.GGmasscan import mscan2
 from lib.GGlog import LogInfo
 from lib.GGtiqu import tiqu
 if __name__ == '__main__':
-    print ('\033[1;32m----------------------------GGSCAN V1.3\033[0m')
+    print ('\033[1;32m----------------------------GGSCAN V1.4\033[0m')
     print ('\033[1;32m----------------------------BY:MELONER\033[0m')
     result=[]
     #获取运行时间
